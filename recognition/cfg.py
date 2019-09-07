@@ -1,0 +1,11 @@
+width = 200
+height = 31
+label_len = 11
+characters = '0123456789' + '-'
+label_classes = len(characters)
+ocr_dataset_path = "dataset/imgs"
+save_model_path = "saved_model/weights.h5"
+log_dir = "logs"
+load_model = True
+load_model_path = "model/weights_base.h5"
+checkpoint_path = "save_model/val_model.h5"
