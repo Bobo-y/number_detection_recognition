@@ -1,5 +1,5 @@
 from keras import backend as ktf
-from keras.layers import Conv2D, LSTM, Lambda, BatchNormalization, MaxPooling2D, Reshape, Dense, Dropout, add, concatenate
+from keras.layers import Conv2D, LSTM, Lambda, BatchNormalization, MaxPooling2D, Reshape, Dense, Dropout, add, concatenate, Bidirectional
 from keras.models import Model, Input
 from keras.optimizers import SGD
 
@@ -45,15 +45,11 @@ class CRNN:
 
         fc_1 = Dense(128, activation='relu')(x_reshape)
 
-        rnn_1 = LSTM(128, kernel_initializer="he_normal", return_sequences=True)(fc_1)
-        rnn_1b = LSTM(128, kernel_initializer="he_normal", go_backwards=True, return_sequences=True)(fc_1)
-        rnn1_merged = add([rnn_1, rnn_1b])
+        bi_lstm1 = Bidirectional(LSTM(128, kernel_initializer="he_normal", return_sequences=True), merge_mode='concat')(fc_1)
 
-        rnn_2 = LSTM(128, kernel_initializer="he_normal", return_sequences=True)(rnn1_merged)
-        rnn_2b = LSTM(128, kernel_initializer="he_normal", go_backwards=True, return_sequences=True)(rnn1_merged)
-        rnn2_merged = concatenate([rnn_2, rnn_2b])
+        bi_lstm2 = Bidirectional(LSTM(128, kernel_initializer="he_normal", return_sequences=True), merge_mode='concat')(bi_lstm1)
 
-        drop_1 = Dropout(0.25)(rnn2_merged)
+        drop_1 = Dropout(0.25)(bi_lstm2)
 
         fc_2 = Dense(self.label_classes, kernel_initializer='he_normal', activation='softmax')(drop_1)
 
@@ -70,8 +66,8 @@ class CRNN:
         sgd = SGD(lr=0.0001, decay=1e-6, momentum=0.9, nesterov=True, clipnorm=5)
 
         train_model.compile(loss={'ctc': lambda y_true, y_pred: y_pred}, optimizer=sgd)
-        # infer_model.summary()
-        # train_model.summary()
+        infer_model.summary()
+        train_model.summary()
         return train_model, infer_model
 
 

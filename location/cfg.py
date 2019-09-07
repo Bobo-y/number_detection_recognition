@@ -1,4 +1,3 @@
-
 epoch_num = 24
 lr = 1e-3
 decay = 5e-4
