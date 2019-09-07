@@ -16,4 +16,5 @@ Recognition:
 
 
 limitations:
+
 *When the two models are test on their respective validation sets , they can reach an acc of about 0.9. However, the number of the training data for recognizer I generated is horizontal, and the number in the crop image after the detection result introduces the rotation and other factors, resulting in poor results when used in combination.*
