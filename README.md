@@ -1,7 +1,7 @@
 number detection and recognition based on [AdvancedEast](https://github.com/huoyijie/AdvancedEASTg) and [CRNN](https://arxiv.org/abs/1507.05717)
 
 Detection and Crop:
-<img src="https://github.com/yl305237731/VOS_seg/blob/master/output/00001.jpg" height="200" width="300">
+<img src="https://github.com/yl305237731/number_detection_recognition/blob/master/demo/re1.jpg" height="200" width="300">
 
 Recognition:
 
@@ -16,4 +16,4 @@ Recognition:
 
 
 limitations:
-When the two models are test on their respective validation sets , they can reach an acc of about 0.9. However, the number of the training data for recognizer I generated is horizontal, and the number in the crop image after the detection result introduces the rotation and other factors, resulting in poor results when used in combination.
+*When the two models are test on their respective validation sets , they can reach an acc of about 0.9. However, the number of the training data for recognizer I generated is horizontal, and the number in the crop image after the detection result introduces the rotation and other factors, resulting in poor results when used in combination.*
