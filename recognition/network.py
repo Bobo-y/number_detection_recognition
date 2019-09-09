@@ -48,7 +48,7 @@ class CRNN:
         rnn_1 = LSTM(128, kernel_initializer="he_normal", return_sequences=True)(fc_1)
         rnn_1b = LSTM(128, kernel_initializer="he_normal", go_backwards=True, return_sequences=True)(fc_1)
         rnn1_merged = add([rnn_1, rnn_1b])
-        # bi_lstm1 = Bidirectional(LSTM(128, kernel_initializer="he_normal", return_sequences=True), merge_mode='concat')(fc_1)
+        # bi_lstm1 = Bidirectional(LSTM(128, kernel_initializer="he_normal", return_sequences=True), merge_mode='add')(fc_1)
         #
         rnn_2 = LSTM(128, kernel_initializer="he_normal", return_sequences=True)(rnn1_merged)
         rnn_2b = LSTM(128, kernel_initializer="he_normal", go_backwards=True, return_sequences=True)(rnn1_merged)
