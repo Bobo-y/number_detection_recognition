@@ -30,11 +30,10 @@ east_network.fit_generator(generator=gen(),
                            validation_steps=cfg.validation_steps,
                            verbose=1,
                            initial_epoch=cfg.initial_epoch,
-                           callbacks=[
-                               EarlyStopping(patience=cfg.patience, verbose=1),
-                               ModelCheckpoint(filepath=cfg.model_weights_path,
-                                               save_best_only=True,
-                                               save_weights_only=True,
-                                               verbose=1)])
+                           callbacks=[EarlyStopping(patience=cfg.patience, verbose=1),
+                                      ModelCheckpoint(filepath=cfg.model_weights_path,
+                                                      save_best_only=True,
+                                                      save_weights_only=True,
+                                                      verbose=1)])
 east_network.save(cfg.saved_model_file_path)
 east_network.save_weights(cfg.saved_model_weights_file_path)
